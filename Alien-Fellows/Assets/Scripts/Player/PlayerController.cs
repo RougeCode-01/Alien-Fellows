@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public GameObject examinePoint; //where do we place the object we're examining?
     public float lerpTime = 1.0f; // how long does it take to move the obect from it's origin to the examine point?
     private bool isLerping;
+    private bool mouseRotating;
 
     private void Start()
     {
@@ -26,7 +27,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
+        if (mouseRotating && Input.GetButtonUp("Fire1")) //check for mouse rotation release first
+        {
+            mouseRotating = false;
+            playerMouseLook.isRotating = false;
+            Cursor.lockState = CursorLockMode.None;
+        }
         if (isInteracting)
         {
             if (Input.GetButtonDown("Fire1"))
@@ -34,14 +40,22 @@ public class PlayerController : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
-                if (Physics.Raycast(ray, out hit) && !hit.collider.CompareTag("Interactable")) // cast a ray from the player's camera then check if it's something we can look at
+                if (Physics.Raycast(ray, out hit))
                 {
-                    ExitInteract();
+                    if (hit.collider.gameObject == examinedObject)
+                    {
+                        Rotate();
+                    }
+                    else
+                    {
+                        ExitInteract();
+                    }
                 }
                 else
                 {
                     ExitInteract();
                 }
+
             }
         }
 
@@ -89,6 +103,15 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(LerpObjectBack());
     }
 
+    public void Rotate() // spin the object with the mouse
+    {
+        Debug.Log("rotating");
+        mouseRotating = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        playerMouseLook.rotatedObject = examinedObject;
+        playerMouseLook.isRotating = true;
+    }
+
     //Lerp Coroutunes
 
     IEnumerator LerpObjectToPlayer() //we'll move the object to our examine location with this
@@ -102,8 +125,6 @@ public class PlayerController : MonoBehaviour
         {
             examinedObject.transform.position = Vector3.Lerp(currentPosition, examinePoint.transform.position, (elapsedTime / lerpTime));
             elapsedTime += Time.deltaTime;
-
-            // Yield here
             yield return null;
         }
         examinedObject.transform.position = examinePoint.transform.position;
@@ -115,18 +136,22 @@ public class PlayerController : MonoBehaviour
     {
 
         Vector3 currentPosition = examinedObject.transform.position;
+        Quaternion currentRotation = examinedObject.transform.rotation;
+        Quaternion targetRotation = Quaternion.Euler(storedTransform);
         float elapsedTime = 0.0f;
         isLerping = true;
         while (elapsedTime < lerpTime)
         {
             examinedObject.transform.position = Vector3.Lerp(currentPosition, storedTransform, (elapsedTime / lerpTime));
+            examinedObject.transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, (elapsedTime / lerpTime));
             elapsedTime += Time.deltaTime;
-
-            // Yield here
             yield return null;
         }
         examinedObject.transform.position = storedTransform;
+        examinedObject.transform.rotation = targetRotation;
         isLerping = false;
         yield return null;
     }
+
+
 }
