@@ -14,10 +14,10 @@ public class PlayerController : MonoBehaviour
     private bool isInteracting;
     public PlayerMouseLook playerMouseLook;
     private GameObject examinedObject; // what are we looking at
-    private Transform storedTransform; //store the examined object's original transform
+    private Vector3 storedTransform; //store the examined object's original transform
     public GameObject examinePoint; //where do we place the object we're examining?
     public float lerpTime = 1.0f; // how long does it take to move the obect from it's origin to the examine point?
-
+    private bool isLerping;
 
     private void Start()
     {
@@ -53,8 +53,8 @@ public class PlayerController : MonoBehaviour
             transform.Translate(strafe, 0, move);
         }
 
-        //Interacty
-        if (Input.GetButtonDown("Fire1"))
+        //Interact
+        if (!isInteracting && !isLerping && Input.GetButtonDown("Fire1"))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Interactable")) // cast a ray from the player's camera then check if it's something we can look at
             {
                 examinedObject = hit.collider.gameObject;
-                storedTransform = examinedObject.transform;
+                storedTransform = examinedObject.transform.position;
                 EnterInteract();
             }
             else
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
         float elapsedTime = 0.0f;
         //examinedObject.transform.position = Vector3.Lerp(currentPosition, examinePoint.transform.position, (elapsedTime / lerpTime));
         //elapsedTime += Time.deltaTime;
-
+        isLerping = true;
         while (elapsedTime < lerpTime)
         {
             examinedObject.transform.position = Vector3.Lerp(currentPosition, examinePoint.transform.position, (elapsedTime / lerpTime));
@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         examinedObject.transform.position = examinePoint.transform.position;
+        isLerping = false;
         yield return null;
     }
 
@@ -115,15 +116,17 @@ public class PlayerController : MonoBehaviour
 
         Vector3 currentPosition = examinedObject.transform.position;
         float elapsedTime = 0.0f;
+        isLerping = true;
         while (elapsedTime < lerpTime)
         {
-            examinedObject.transform.position = Vector3.Lerp(currentPosition, storedTransform.position, (elapsedTime / lerpTime));
+            examinedObject.transform.position = Vector3.Lerp(currentPosition, storedTransform, (elapsedTime / lerpTime));
             elapsedTime += Time.deltaTime;
 
             // Yield here
             yield return null;
         }
-        examinedObject.transform.position = storedTransform.position;
+        examinedObject.transform.position = storedTransform;
+        isLerping = false;
         yield return null;
     }
 }
