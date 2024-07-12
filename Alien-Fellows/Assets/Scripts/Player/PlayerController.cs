@@ -17,8 +17,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 storedTransform; //store the examined object's original transform
     public GameObject examinePoint; //where do we place the object we're examining?
     public float lerpTime = 1.0f; // how long does it take to move the obect from it's origin to the examine point?
-    private bool isLerping;
-    private bool mouseRotating;
+    private bool isLerping; // using this to make sure we can't interrupt the objects while they're moving & screw up thier default position
+    private bool mouseRotating; // are we spinning something?
+    public GameObject dialogueTarget; // who are we talking to?
+    public bool inDialogue;
 
     private void Start()
     {
@@ -94,6 +96,12 @@ public class PlayerController : MonoBehaviour
                 storedTransform = examinedObject.transform.position;
                 EnterInteract();
             }
+
+            else if ((Physics.Raycast(ray, out hit) && hit.collider.CompareTag("NPC"))
+            {
+                EnterDialogue();
+            }
+                
             else
             {
                 //nothing doing
@@ -168,5 +176,18 @@ public class PlayerController : MonoBehaviour
         yield return null;
     }
 
+    // Dialogue stuff
+    public void EnterDialogue()
+    {
+        inDialogue = true;
+        playerMouseLook.inDialogue = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
 
+    public void ExitDialogue()
+    {
+        inDialogue = false;
+        playerMouseLook.inDialogue = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 }

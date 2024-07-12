@@ -13,13 +13,14 @@ public class PlayerMouseLook : MonoBehaviour
     private Vector2 objectRotation;
     public bool isInteracting;
     public bool isRotating;
+    public bool inDialogue;
     public GameObject rotatedObject;
 
 
     void Update()
     {
         //Looky
-        if (!isInteracting)
+        if (!isInteracting && !inDialogue)
         {
             var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
             mouselook += mouseDelta;
