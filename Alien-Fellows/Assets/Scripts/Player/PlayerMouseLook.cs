@@ -34,8 +34,8 @@ public class PlayerMouseLook : MonoBehaviour
             var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
             objectRotation += mouseDelta;
             //mouselook.y = Mathf.Clamp(mouselook.y, -90f, 90f);
-            rotatedObject.transform.localRotation = Quaternion.AngleAxis(objectRotation.y, Vector3.right);
-            rotatedObject.transform.localRotation = Quaternion.AngleAxis(objectRotation.x, rotatedObject.transform.up);
+            rotatedObject.transform.rotation = Quaternion.Euler(objectRotation.y, objectRotation.x, 0);
+            //rotatedObject.transform.localRotation = Quaternion.AngleAxis(objectRotation.x, Vector3.up);
         }
 
     }

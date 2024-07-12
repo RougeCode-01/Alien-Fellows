@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
                 EnterInteract();
             }
 
-            else if ((Physics.Raycast(ray, out hit) && hit.collider.CompareTag("NPC"))
+            else if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("NPC"))
             {
                 EnterDialogue();
             }
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
     public void Rotate() // spin the object with the mouse
     {
-        Debug.Log("rotating");
+        //Debug.Log("rotating");
         mouseRotating = true;
         Cursor.lockState = CursorLockMode.Locked;
         playerMouseLook.rotatedObject = examinedObject;
