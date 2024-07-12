@@ -27,12 +27,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
+        //handling object rotation
         if (mouseRotating && Input.GetButtonUp("Fire1")) //check for mouse rotation release first
         {
             mouseRotating = false;
             playerMouseLook.isRotating = false;
             Cursor.lockState = CursorLockMode.None;
         }
+
+        //object interaction logic:
         if (isInteracting)
         {
             if (Input.GetButtonDown("Fire1"))
@@ -42,16 +46,27 @@ public class PlayerController : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hit))
                 {
-                    if (hit.collider.gameObject == examinedObject)
+                    if (hit.collider.gameObject == examinedObject || hit.transform.IsChildOf(examinedObject.transform))     // If we click on the selected object again...
                     {
-                        Rotate();
+                        ObjectTrigger objectTrigger = hit.collider.gameObject.GetComponent<ObjectTrigger>();                // check if we're clicking on a button or something first...
+                        //Debug.Log(objectTrigger);
+
+                        if (objectTrigger != null)                                                                          // If we are, signal to that trigger object -
+                        {
+                            objectTrigger.ButtonPressed();
+                        }
+                            
+                        else if (objectTrigger == null && hit.collider.gameObject == examinedObject)                        // If not, begin to rotate the object instead.
+                        {
+                            Rotate();
+                        }
                     }
-                    else
+                    else                        // Disengage from the object if we click on a different object in the background...
                     {
                         ExitInteract();
                     }
                 }
-                else
+                else                            // ... Or if we click on nothing at all.
                 {
                     ExitInteract();
                 }
