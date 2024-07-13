@@ -10,7 +10,7 @@ public class PlayerMouseLook : MonoBehaviour
     public PlayerController playerController;   //grab this so we can disable mouselook when we interact with stuff
     public float mouseSensitivity = 2.0f;
     private Vector2 mouselook;
-    private Vector2 objectRotation;
+    //private Vector2 objectRotation;
     public bool isInteracting;
     public bool isRotating;
     public bool inDialogue;
@@ -39,7 +39,7 @@ public class PlayerMouseLook : MonoBehaviour
             Vector3 right = Vector3.Cross(transform.up, rotatedObject.transform.position - transform.position);
             Vector3 up = Vector3.Cross(transform.position - rotatedObject.transform.position, right);
 
-            rotatedObject.transform.rotation = Quaternion.AngleAxis(-rotateX, up) * rotatedObject.transform.rotation;
+            rotatedObject.transform.rotation = Quaternion.AngleAxis(rotateX, up) * rotatedObject.transform.rotation;
             rotatedObject.transform.rotation = Quaternion.AngleAxis(rotateY, right) * rotatedObject.transform.rotation;
 
             /* this works ok but all the rotation is based on the axes of the object itself, not relating to the axes of the camera - a little counter intuitive I don't love it
