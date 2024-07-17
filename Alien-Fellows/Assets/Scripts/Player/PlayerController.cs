@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private bool mouseRotating; // are we spinning something?
     public GameObject dialogueTarget; // who are we talking to?
     public bool inDialogue;
+    public PlayerEventTracker eventTracker;
 
     private void Start()
     {
@@ -112,6 +113,7 @@ public class PlayerController : MonoBehaviour
     private void EnterInteract() //set our interacting state, unlock the mouse cursor, and start the Lerp coroutine to bring the object to the camera so we can look at it closely
     {
         isInteracting = true;
+        eventTracker.CheckExaminedObject(examinedObject); //send a signal to the event tracker so it can check if we're looking at something important
         playerMouseLook.isInteracting = true;
         Cursor.lockState = CursorLockMode.None;
         StartCoroutine(LerpObjectToPlayer());
