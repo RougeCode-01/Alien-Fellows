@@ -1132,7 +1132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f33df4a8e10b824198d04828149f7ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 0}
+  light: {fileID: 495241544}
   pinNumberText: {fileID: 581117282}
   pinNumber: 12345
   keypadUI: {fileID: 308764662}
@@ -2340,7 +2340,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.012079239, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 40
   m_Range: 100
   m_SpotAngle: 30
