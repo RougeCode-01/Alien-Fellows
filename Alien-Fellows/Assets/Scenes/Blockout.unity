@@ -3461,21 +3461,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 32350121828083231, guid: b515d44971e33184e902568f232fc94c, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1795050752883716154, guid: b515d44971e33184e902568f232fc94c, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2439217023647095304, guid: b515d44971e33184e902568f232fc94c, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6796564254178927398, guid: b515d44971e33184e902568f232fc94c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.917366
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6796564254178927398, guid: b515d44971e33184e902568f232fc94c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.62
+      value: 8.2
       objectReference: {fileID: 0}
     - target: {fileID: 6796564254178927398, guid: b515d44971e33184e902568f232fc94c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -95.8
+      value: -75.02
       objectReference: {fileID: 0}
     - target: {fileID: 6796564254178927398, guid: b515d44971e33184e902568f232fc94c, type: 3}
       propertyPath: m_LocalRotation.w

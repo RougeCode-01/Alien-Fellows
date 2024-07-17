@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
 
         //Moovy
         if (!isInteracting) // can't move while looking at stuff
+            //This has collision issues due to using translate instead of rigidbodies but it's too late to care, my b for not seeing this earlier
         {
             move = Input.GetAxis("Vertical") * speed * Time.deltaTime;
             strafe = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
