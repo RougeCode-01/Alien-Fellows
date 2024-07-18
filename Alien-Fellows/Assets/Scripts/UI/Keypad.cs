@@ -17,6 +17,8 @@ public class Keypad : MonoBehaviour
    [SerializeField] private AudioSource keypadSound; // Reference to the AudioSource component for playing the keypad sound.
    [SerializeField] private AudioSource correctPinSound; // Reference to the AudioSource component for playing the correct pin sound.
    [SerializeField] private AudioSource wrongPinSound; // Reference to the AudioSource component for playing the wrong pin sound.
+   
+   private FadeToWhite fadeToWhite; // Reference to the FadeToWhite script.
 
    private void Awake()
    {
@@ -26,6 +28,8 @@ public class Keypad : MonoBehaviour
       light.SetActive(false);
       //Set the pin number text to be blank
       pinNumberText.text = "";
+      //Get the FadeToWhite script
+      fadeToWhite = FindObjectOfType<FadeToWhite>();
    }
 
    private void Update()
@@ -127,9 +131,27 @@ public class Keypad : MonoBehaviour
    
    void MoveBlock()
    {
-      //Move the block up "Smoothly"
-      transform.position += new Vector3(0, 15, 0);
-      //Activate the light
-      light.SetActive(true);
+      StartCoroutine(MoveBlockSmoothly());
+   }
+
+// Coroutine for smooth movement
+   IEnumerator MoveBlockSmoothly()
+   {
+      Vector3 startPosition = transform.position;
+      Vector3 endPosition = startPosition + new Vector3(0, 16, 0); // Adjust the Y value as needed
+      float duration = 2.0f; // Duration of the movement in seconds
+      float elapsedTime = 0;
+
+      while (elapsedTime < duration)
+      {
+         transform.position = Vector3.Lerp(startPosition, endPosition, (elapsedTime / duration));
+         elapsedTime += Time.deltaTime;
+         yield return null;
+      }
+
+      transform.position = endPosition; // Ensure the block reaches the final position
+      light.SetActive(true); // Activate the light
+      
+      fadeToWhite.BeginFadeIn(); // Start the fade in effect
    }
 }
