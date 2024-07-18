@@ -567,8 +567,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60cd8c20ad84f2c42a3be44c9581a31e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: {fileID: 0}
+  dialogueText: {fileID: 1738156254}
   nextButton: {fileID: 388965998}
+  dialoguePanel: {fileID: 1791517232}
   nextKey: 101
 --- !u!4 &1036045194
 Transform:

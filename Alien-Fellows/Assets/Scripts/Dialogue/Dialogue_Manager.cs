@@ -26,6 +26,7 @@ public class Dialogue_Manager : MonoBehaviour
     {
         isDialogueActive = true;
         dialoguePanel.SetActive(true);  // Show the panel when dialogue starts
+        Debug.Log("Dialogue pannel is set active to true");
 
         sentences.Clear();
 
@@ -76,5 +77,6 @@ public class Dialogue_Manager : MonoBehaviour
         isDialogueActive = false;
         dialogueText.text = "";
         dialoguePanel.SetActive(false);  // Hide the panel when dialogue ends
+        Debug.Log("Dialogue pannel is set active to false");
     }
 }

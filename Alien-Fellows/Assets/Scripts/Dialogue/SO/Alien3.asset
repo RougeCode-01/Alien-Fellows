@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Alien3
   m_EditorClassIdentifier: 
   name: 
-  sentences: []
+  sentences:
+  - Dialogue3

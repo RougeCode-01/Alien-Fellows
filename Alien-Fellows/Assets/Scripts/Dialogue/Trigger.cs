@@ -16,6 +16,7 @@ public class Trigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Collison Occured");
             TriggerDialogue();
         }
     }
