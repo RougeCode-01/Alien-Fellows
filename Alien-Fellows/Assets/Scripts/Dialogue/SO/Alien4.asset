@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Alien4
   m_EditorClassIdentifier: 
   name: 
-  sentences: []
+  sentences:
+  - xCcxcXcx
