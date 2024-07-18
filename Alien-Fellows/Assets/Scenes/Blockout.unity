@@ -654,7 +654,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8120b7deae02bb84e88099254f0bd612, type: 2}
     - target: {fileID: 919132149155446097, guid: d7a2078965cb4a64c8c89f7bd7a89572, type: 3}
       propertyPath: m_Name
-      value: book_black_01
+      value: THIRDSWITCH
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d7a2078965cb4a64c8c89f7bd7a89572, type: 3}
       propertyPath: m_TagString
@@ -1134,7 +1134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   light: {fileID: 495241544}
   pinNumberText: {fileID: 581117282}
-  pinNumber: 12345
+  pinNumber: 41239
   keypadUI: {fileID: 308764662}
   keypadSound: {fileID: 1354233281}
   correctPinSound: {fileID: 606274707}
@@ -1205,7 +1205,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 57a883733bd23b3439a37c195ac7fd36, type: 2}
     - target: {fileID: 919132149155446097, guid: 844bfb5a081798342abe0ba213b42b9e, type: 3}
       propertyPath: m_Name
-      value: box_01
+      value: SECONDSWITCH
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 844bfb5a081798342abe0ba213b42b9e, type: 3}
       propertyPath: m_TagString
@@ -1619,7 +1619,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8120b7deae02bb84e88099254f0bd612, type: 2}
     - target: {fileID: 919132149155446097, guid: d7a2078965cb4a64c8c89f7bd7a89572, type: 3}
       propertyPath: m_Name
-      value: book_black_01 (2)
+      value: FOURTHSWITCH
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d7a2078965cb4a64c8c89f7bd7a89572, type: 3}
       propertyPath: m_TagString
@@ -2939,7 +2939,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 768198191373122240, guid: e5a4f55fa83b1d242a4a0a9ff562b747, type: 3}
       propertyPath: m_Name
-      value: Interactable Object
+      value: FIRSTSWITCH
       objectReference: {fileID: 0}
     - target: {fileID: 7005712426505131250, guid: e5a4f55fa83b1d242a4a0a9ff562b747, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4298,7 +4298,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 84b1b0e226c205e4e9668daf975cecb2, type: 2}
     - target: {fileID: 919132149155446097, guid: d7a2078965cb4a64c8c89f7bd7a89572, type: 3}
       propertyPath: m_Name
-      value: book_black_01 (1)
+      value: SIXTHSWITCH
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d7a2078965cb4a64c8c89f7bd7a89572, type: 3}
       propertyPath: m_TagString
@@ -5752,7 +5752,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8120b7deae02bb84e88099254f0bd612, type: 2}
     - target: {fileID: 919132149155446097, guid: d7a2078965cb4a64c8c89f7bd7a89572, type: 3}
       propertyPath: m_Name
-      value: book_black_01 (3)
+      value: FIFTHSWITCH
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d7a2078965cb4a64c8c89f7bd7a89572, type: 3}
       propertyPath: m_TagString
