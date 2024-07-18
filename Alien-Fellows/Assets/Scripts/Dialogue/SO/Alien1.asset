@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Alien1
   sentences:
-  - Hi you must be the LANDLORD, here to replace the LIGHTBULB. Here is my garden
-    :)
+  - Hi you must be the LANDLORD, here to replace the LIGHTBULB. Inspect the objects
+    with MOUSE1, and click off of them when you're done.
+  - Once you've found the object, the next door will open.
