@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Alien5
   m_EditorClassIdentifier: 
   name: 
-  sentences: []
+  sentences:
+  - Due to scope cuts I'm just telling you the password is 41239
