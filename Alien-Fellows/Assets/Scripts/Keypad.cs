@@ -17,6 +17,8 @@ public class Keypad : MonoBehaviour
    [SerializeField] private AudioSource keypadSound; // Reference to the AudioSource component for playing the keypad sound.
    [SerializeField] private AudioSource correctPinSound; // Reference to the AudioSource component for playing the correct pin sound.
    [SerializeField] private AudioSource wrongPinSound; // Reference to the AudioSource component for playing the wrong pin sound.
+   
+   private FadeToWhite fadeToWhite; // Reference to the FadeToWhite script.
 
    private void Awake()
    {
@@ -26,6 +28,8 @@ public class Keypad : MonoBehaviour
       light.SetActive(false);
       //Set the pin number text to be blank
       pinNumberText.text = "";
+      //Get the FadeToWhite script
+      fadeToWhite = FindObjectOfType<FadeToWhite>();
    }
 
    private void Update()
@@ -147,5 +151,7 @@ public class Keypad : MonoBehaviour
 
       transform.position = endPosition; // Ensure the block reaches the final position
       light.SetActive(true); // Activate the light
+      
+      fadeToWhite.BeginFadeIn(); // Start the fade in effect
    }
 }
