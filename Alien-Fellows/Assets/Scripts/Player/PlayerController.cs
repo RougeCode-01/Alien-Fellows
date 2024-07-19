@@ -108,6 +108,12 @@ public class PlayerController : MonoBehaviour
                 //nothing doing
             }
         }
+        
+        //Toggle mouse inversion
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            playerMouseLook.ToggleMouseInversion();
+        }
     }
 
     private void EnterInteract() //set our interacting state, unlock the mouse cursor, and start the Lerp coroutine to bring the object to the camera so we can look at it closely

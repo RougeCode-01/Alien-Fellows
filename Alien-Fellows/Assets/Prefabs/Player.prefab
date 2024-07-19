@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 4069475280674294740}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,3 +378,4 @@ MonoBehaviour:
   isRotating: 0
   inDialogue: 0
   rotatedObject: {fileID: 0}
+  isMouseInverted: 0

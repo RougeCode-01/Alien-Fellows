@@ -15,6 +15,8 @@ public class PlayerMouseLook : MonoBehaviour
     public bool isRotating;
     public bool inDialogue;
     public GameObject rotatedObject;
+    
+    public bool isMouseInverted = false;
 
 
     void Update()
@@ -23,6 +25,12 @@ public class PlayerMouseLook : MonoBehaviour
         if (!isInteracting && !inDialogue)
         {
             var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+            
+            if (isMouseInverted)
+            {
+                mouseDelta.y *= -1;
+            }
+
             mouselook += mouseDelta;
             mouselook.y = Mathf.Clamp(mouselook.y, -90f, 90f);
             transform.localRotation = Quaternion.AngleAxis(mouselook.y, Vector3.right);
@@ -49,5 +57,10 @@ public class PlayerMouseLook : MonoBehaviour
             */
         }
 
+    }
+    
+    public void ToggleMouseInversion()
+    {
+        isMouseInverted = !isMouseInverted;
     }
 }
