@@ -67,7 +67,7 @@ public class Dialogue_Manager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             dialogueText.text += letter;
-            yield return new WaitForSeconds(0.05f);  // Adjust this value to control the typing speed
+            yield return new WaitForSeconds(0.01f);  // Adjust this value to control the typing speed
         }
     }
 
