@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+    /*
+     * This script is defunct and I'm just leaving it here for comparison.
+     * Check out how much better the proper Unity Event solution is than this was.
+     */
+
 public class PlayerEventTracker : MonoBehaviour
 {
     public PlayerController playerController;
@@ -25,14 +31,14 @@ public class PlayerEventTracker : MonoBehaviour
     public OpenDoor door04;
     public OpenDoor door05;
     */
-    public void CheckExaminedObject(GameObject examinedObject) //here's a gruesome series of if else if statements that will check
-                                                               //if we're holding the thing needed to open the next door
+    public void CheckExaminedObject(GameObject examinedObject)  //this is the new solution, but I moved it to the interact function in the playercontroller script.
     {
         if ( examinedObject.GetComponent<PickupEvent>())
         {
             examinedObject.GetComponent<PickupEvent>().PickedUp();
         }
-        /*
+        /*                                                      //here's a gruesome series of if else if statements that will check
+                                                                //if we're holding the thing needed to open the next door
         if (examinedObject == essentialObject01)
         {
             door01.OpenEvent();

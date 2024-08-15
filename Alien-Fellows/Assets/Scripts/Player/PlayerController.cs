@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private float move;
     private Rigidbody rb; // our rigidbody
     private Vector3 movementDirection;
+    public bool isGrounded = false;
 
 
     //what do we need for interaction stuff?
@@ -109,7 +110,12 @@ public class PlayerController : MonoBehaviour
                 //nothing doing
             }
         }
-        
+
+        if (!isInteracting && isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
+
         //Toggle mouse inversion
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -133,10 +139,20 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(movementDirection.normalized * speed, ForceMode.Force);
     }
 
+    private void Jump()
+    {        
+        rb.AddForce(transform.up * 200);
+    }
+
     private void EnterInteract() //set our interacting state, unlock the mouse cursor, and start the Lerp coroutine to bring the object to the camera so we can look at it closely
     {
         isInteracting = true;
-        eventTracker.CheckExaminedObject(examinedObject); //send a signal to the event tracker so it can check if we're looking at something important
+
+        if (examinedObject.GetComponent<PickupEvent>()) //we can just remove the PlayerEventTracker script now - I'll leave it attached so you can take a look at it though, and see how much nicer this is
+        {
+            examinedObject.GetComponent<PickupEvent>().PickedUp();  //check the component for our event and activate it if it has one
+        }
+        //eventTracker.CheckExaminedObject(examinedObject); //send a signal to the event tracker so it can check if we're looking at something important
         playerMouseLook.isInteracting = true;
         Cursor.lockState = CursorLockMode.None;
         StartCoroutine(LerpObjectToPlayer());
