@@ -11,6 +11,7 @@ public class PlayerEventTracker : MonoBehaviour
     //but considering the scope it's probably easier to set it up this way so we can stitch it all together for the final push.
 
     //assign each essential object with the keycode pieces here
+    /*
     public GameObject essentialObject01;
     public GameObject essentialObject02;
     public GameObject essentialObject03;
@@ -23,10 +24,15 @@ public class PlayerEventTracker : MonoBehaviour
     public OpenDoor door03;
     public OpenDoor door04;
     public OpenDoor door05;
-
+    */
     public void CheckExaminedObject(GameObject examinedObject) //here's a gruesome series of if else if statements that will check
                                                                //if we're holding the thing needed to open the next door
     {
+        if ( examinedObject.GetComponent<PickupEvent>())
+        {
+            examinedObject.GetComponent<PickupEvent>().PickedUp();
+        }
+        /*
         if (examinedObject == essentialObject01)
         {
             door01.OpenEvent();
@@ -51,5 +57,6 @@ public class PlayerEventTracker : MonoBehaviour
         {
             
         }
+        */
     }
 }

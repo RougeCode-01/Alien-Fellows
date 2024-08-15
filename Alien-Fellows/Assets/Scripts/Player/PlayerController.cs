@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 10.0f;
     private float strafe;
     private float move;
+    private Rigidbody rb; // our rigidbody
+    private Vector3 movementDirection;
 
 
     //what do we need for interaction stuff?
@@ -26,10 +28,15 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked; //grab the mouse on start
+        rb = gameObject.GetComponent<Rigidbody>(); // define the rigidbody on start
     }
 
     private void Update()
     {
+        //take player input up here
+        move = Input.GetAxisRaw("Vertical"); //* speed * Time.deltaTime;
+        strafe = Input.GetAxisRaw("Horizontal"); //* speed * Time.deltaTime;
+        movementDirection = transform.forward * move + transform.right * strafe;
 
         //handling object rotation
         if (mouseRotating && Input.GetButtonUp("Fire1")) //check for mouse rotation release first
@@ -77,13 +84,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //Moovy
-        if (!isInteracting) // can't move while looking at stuff
-        {
-            move = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-            strafe = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-            transform.Translate(strafe, 0, move);
-        }
+
 
         //Interact
         if (!isInteracting && !isLerping && Input.GetButtonDown("Fire1"))
@@ -114,6 +115,22 @@ public class PlayerController : MonoBehaviour
         {
             playerMouseLook.ToggleMouseInversion();
         }
+    }
+
+    private void FixedUpdate() //putting this in fixedupdate instead of the middle of Update
+    {
+        //Moovy
+        if (!isInteracting) // can't move while looking at stuff
+        {
+            MovePlayer();
+            // Let's turn off the Translate and implement a more robust rigidbody controller
+            //transform.Translate(strafe, 0, move);
+        }
+    }
+
+    private void MovePlayer()
+    {
+        rb.AddForce(movementDirection.normalized * speed, ForceMode.Force);
     }
 
     private void EnterInteract() //set our interacting state, unlock the mouse cursor, and start the Lerp coroutine to bring the object to the camera so we can look at it closely
