@@ -14,7 +14,7 @@ public class GroundCollisionDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("Ground Collider++");
+        //Debug.Log("Ground Collider++");
         collisions++;
         if (playerController.isGrounded != true)
         {
@@ -24,7 +24,7 @@ public class GroundCollisionDetector : MonoBehaviour
 
     private void OnTriggerExit(Collider collision)
     {
-        Debug.Log("Ground Collider--");
+        //Debug.Log("Ground Collider--");
         collisions--;
         if (playerController.isGrounded == true && collisions == 0)
         {
